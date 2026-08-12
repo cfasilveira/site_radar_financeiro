@@ -11,8 +11,8 @@ COPY pyproject.toml README.md ./
 COPY app ./app
 COPY scripts ./scripts
 
-RUN pip install --no-cache-dir --upgrade pip \
-    && pip install --no-cache-dir --no-build-isolation .
+RUN pip install --no-cache-dir --upgrade pip setuptools \
+    && pip install --no-cache-dir .
 
 EXPOSE 8000
 
