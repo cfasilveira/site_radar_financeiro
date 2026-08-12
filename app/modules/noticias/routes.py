@@ -10,14 +10,11 @@ router = APIRouter(prefix="/noticias", tags=["noticias"])
 
 def _autenticar(request: Request) -> int:
     """Extrai e valida o token do usuário"""
+    # SEGURANÇA: Tokens via query string foram removidos — aparecem em logs e histórico
     auth_header = request.headers.get("Authorization", "")
-    token = None
-    if auth_header.startswith("Bearer "):
-        token = auth_header.split(" ")[1]
-    else:
-        token = request.query_params.get("token")
-    if not token:
+    if not auth_header.startswith("Bearer ") or len(auth_header) <= 7:
         raise HTTPException(401, "Login necessário para acessar as manchetes")
+    token = auth_header.split(" ", 1)[1]
     try:
         payload = security.verify_token(token)
     except HTTPException:

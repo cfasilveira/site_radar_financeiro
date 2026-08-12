@@ -159,7 +159,7 @@ class NoticiasService:
             self._cache["manchetes"] = (data, now)
             return data
 
-    async def buscarFeed(self):  # pragma: no cover - utilidade de manutenção
+    async def buscar_feed(self):  # pragma: no cover - utilidade de manutenção
         return await self.manchetes(refresh=True)
 
 

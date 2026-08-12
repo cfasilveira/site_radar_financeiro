@@ -12,17 +12,13 @@ from app.modules.realtime.manager import realtime
 router = APIRouter(prefix="/realtime", tags=["realtime"])
 
 @router.get("/stream")
-async def stream_dados(request: Request, token: Optional[str] = Query(None)):
+async def stream_dados(request: Request):
     """Stream de dados em tempo real para assinantes"""
-    # Valida token via Header ou Query parameter
+    # SEGURANÇA: Tokens via query string foram removidos — aparecem em logs e histórico
     auth_header = request.headers.get("Authorization", "")
-    token_str = ""
-    if auth_header.startswith("Bearer "):
-        token_str = auth_header.split(" ")[1]
-    elif token:
-        token_str = token
-    else:
-        raise HTTPException(401, "Token necessário")
+    if not auth_header.startswith("Bearer ") or len(auth_header) <= 7:
+        raise HTTPException(401, "Token necessário (header Authorization: Bearer <token>)")
+    token_str = auth_header.split(" ", 1)[1]
     
     payload = security.verify_token(token_str)
     user_id = int(payload["sub"])

@@ -7,11 +7,10 @@ primary_region = "gru"
 [env]
   ENV = "production"
   DEBUG = "false"
-  JWT_SECRET_KEY = ""
   JWT_EXPIRE_MINUTES = "60"
   DATABASE_URL = "sqlite:///data/app.db"
   LOG_LEVEL = "INFO"
-  ALLOWED_ORIGINS = "*"
+  ALLOWED_ORIGINS = "https://radar-financeiro-mvp.fly.dev"
 
 [http_service]
   internal_port = 8000

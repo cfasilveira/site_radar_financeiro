@@ -1,5 +1,6 @@
 # app/main.py
 """Entry point da aplicação Radar de Finanças"""
+import platform
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
 from fastapi.templating import Jinja2Templates
@@ -79,7 +80,6 @@ async def index(request: Request):
 @app.get("/health")
 async def healthcheck():
     """Endpoint de saúde para monitoramento"""
-    import platform
     return {
         "status": "ok",
         "env": settings.ENV,

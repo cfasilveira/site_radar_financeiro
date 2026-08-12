@@ -14,8 +14,7 @@ dist/
 venv/
 env/
 
-# UV
-uv.lock
+# UV (lockfile deve ser versionado para reprodutibilidade)
 
 # Test / coverage
 .pytest_cache/

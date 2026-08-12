@@ -20,14 +20,14 @@ async def test_stream_sem_token(client: AsyncClient):
 
 @pytest.mark.asyncio
 async def test_stream_token_invalido(client: AsyncClient):
-    res = await client.get("/realtime/stream?token=token-invalido")
+    res = await client.get("/realtime/stream", headers={"Authorization": "Bearer token-invalido"})
     assert res.status_code == 401
 
 
 @pytest.mark.asyncio
 async def test_stream_plano_free_bloqueado(client: AsyncClient):
     token = _token("free@email.com", 999, "free")
-    res = await client.get("/realtime/stream?token=" + token)
+    res = await client.get("/realtime/stream", headers={"Authorization": f"Bearer {token}"})
     assert res.status_code == 403
 
 
