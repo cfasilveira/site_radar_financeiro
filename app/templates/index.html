@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radar de Finanças | Login e Assinatura</title>
+    <meta name="description" content="Portal financeiro de inteligência preditiva, manchetes diárias, análises de mercado com IA e métricas em tempo real.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Chart.js, HTMX, Alpine.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        :root {
+            --bg-main: #0b0f19;
+            --bg-card: rgba(17, 24, 39, 0.7);
+            --border-card: rgba(255, 255, 255, 0.08);
+            --accent-green: #10b981;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-amber: #f59e0b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+
+        body {
+            background-color: var(--bg-main);
+            color: #f3f4f6;
+            min-height: 100vh;
+            background-image:
+                radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.12) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.12) 0px, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(139, 92, 246, 0.08) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-card);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .glass-card:hover { border-color: rgba(255, 255, 255, 0.18); }
+
+        .badge {
+            display: inline-flex; align-items: center; padding: 4px 10px;
+            border-radius: 9999px; font-size: 0.75rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.05em;
+        }
+        .badge-green { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .badge-blue { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+        .badge-amber { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff; font-weight: 600; padding: 10px 20px; border-radius: 10px;
+            border: none; cursor: pointer; transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+        }
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4); }
+
+        .btn-outline {
+            background: transparent; color: #d1d5db; border: 1px solid var(--border-card);
+            font-weight: 500; padding: 10px 20px; border-radius: 10px; cursor: pointer; transition: all 0.2s ease;
+            text-decoration: none; display: inline-block;
+        }
+        .btn-outline:hover { background: rgba(255, 255, 255, 0.05); color: #ffffff; border-color: rgba(255, 255, 255, 0.2); }
+
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        input, textarea, select {
+            width: 100%; padding: 10px; border-radius: 8px; background: rgba(0,0,0,0.4);
+            border: 1px solid var(--border-card); color: #fff; margin-bottom: 12px; font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        label { display: block; font-size: 0.8rem; font-weight: 600; color: #d1d5db; margin-bottom: 4px; }
+
+        /* Banner publicitário */
+        .ad-slot {
+            display: flex; align-items: center; justify-content: center; flex-direction: column;
+            border: 1.5px dashed rgba(255,255,255,0.2); border-radius: 12px; cursor: pointer;
+            color: #9ca3af; text-decoration: none; transition: all 0.2s ease;
+            background: rgba(255,255,255,0.02);
+        }
+        .ad-slot:hover { border-color: var(--accent-green); color: #34d399; background: rgba(16,185,129,0.05); }
+
+        [x-cloak] { display: none !important; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-main); }
+        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+    </style>
+</head>
+<body x-data="radarApp()">
+
+    <!-- TOP NAVIGATION -->
+    <header class="glass-card" style="margin: 16px; padding: 16px 24px; border-radius: 14px; position: sticky; top: 16px; z-index: 100;">
+        <div style="display: flex; justify-content: space-between; align-items: center; max-width: 1280px; margin: 0 auto;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 38px; height: 38px; background: linear-gradient(135deg, #10b981, #3b82f6); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem;">📡</div>
+                <div>
+                    <h1 style="font-size: 1.25rem; font-weight: 800;">RADAR DE FINANÇAS</h1>
+                    <p style="font-size: 0.7rem; color: #9ca3af;">Inteligência Preditiva & Métricas em Tempo Real</p>
+                </div>
+            </div>
+
+            <template x-if="user">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span class="badge" :class="user.plano === 'premium' ? 'badge-amber' : 'badge-blue'" x-text="user.plano"></span>
+                    <span style="font-size: 0.85rem; font-weight: 600;" x-text="user.nome"></span>
+                    <button @click="logout()" class="btn-outline" style="padding: 6px 12px; font-size: 0.8rem;">Sair</button>
+                </div>
+            </template>
+        </div>
+    </header>
+
+    <!-- ======================================================= -->
+    <!-- GATE DE LOGIN: mostrado quando o usuário NÃO está logado -->
+    <!-- ======================================================= -->
+    <template x-if="!user">
+        <main style="max-width: 1080px; margin: 32px auto; padding: 0 16px; display: grid; gap: 28px;">
+
+            <section class="glass-card" style="padding: 44px 32px; text-align: center; background: linear-gradient(135deg, rgba(16,185,129,0.12), rgba(59,130,246,0.12));">
+                <div style="font-size: 3rem; margin-bottom: 12px;">📡</div>
+                <span class="badge badge-green" style="margin-bottom: 14px;">Acesso Restrito a Assinantes</span>
+                <h2 style="font-size: 2.3rem; font-weight: 800; margin-bottom: 12px; line-height: 1.2; max-width: 760px; margin-left:auto; margin-right:auto;">
+                    Enquanto eles veem a crise, você verá a oportunidade.
+                </h2>
+                <p style="color: #9ca3af; font-size: 1.05rem; line-height: 1.6; max-width: 640px; margin: 0 auto 18px;">
+                    Não leia só manchetes. <strong>Entenda o que elas significam para o seu bolso.</strong> Análises
+                    diárias com IA, previsões com percentuais de precisão, gráficos ao vivo e relatórios em PDF — tudo
+                    para você se posicionar à frente do mercado.
+                </p>
+                <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-bottom:20px;">
+                    <span class="badge badge-blue">🧠 Análises com IA</span>
+                    <span class="badge badge-blue">🎯 Previsões com precisão</span>
+                    <span class="badge badge-blue">🚫 Sem propagandas no Premium</span>
+                </div>
+                <p style="font-size: 0.95rem; color: #34d399; font-weight: 600;">
+                    🎁 Entre agora e <strong>ganhe 7 dias Premium grátis</strong> — sem cartão de crédito.
+                </p>
+            </section>
+
+            <!-- Card autenticação -->
+            <section class="glass-card" style="max-width: 480px; margin: 0 auto; padding: 32px; width: 100%;">
+                <!-- Confirmação pendente -->
+                <template x-if="pendingConfirm">
+                    <div>
+                        <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 6px;">✉️ Confirme seu cadastro</h3>
+
+                        <!-- Banner de contexto: aparece quando o usuário é redirecionado do login -->
+                        <template x-if="pendingConfirm.proximos_passos">
+                            <div style="padding: 12px 14px; border-radius: 10px; background: rgba(59,130,246,0.12); border: 1px solid rgba(59,130,246,0.35); margin-bottom: 14px;">
+                                <div style="font-size: 0.8rem; font-weight: 700; color: #93c5fd; margin-bottom: 4px;">
+                                    ℹ️ <span x-text="pendingConfirm.mensagem"></span>
+                                </div>
+                                <div style="font-size: 0.82rem; color: #bfdbfe; line-height: 1.5;" x-text="pendingConfirm.proximos_passos"></div>
+                            </div>
+                        </template>
+
+                        <p x-show="!pendingConfirm.proximos_passos" style="font-size: 0.85rem; color: #9ca3af; margin-bottom: 16px;">
+                            Enviamos um código de 6 dígitos via <strong x-text="pendingConfirm.canal"></strong>
+                            para <span class="mono" x-text="pendingConfirm.destino"></span>.
+                        </p>
+                        <div x-show="pendingConfirm.codigo_demo" style="padding: 12px; border-radius: 10px; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); color: #34d399; font-size: 0.85rem; margin-bottom: 16px;">
+                            🔔 Modo demonstração — seu código é: <span class="mono" style="font-size: 1rem; font-weight: 800;" x-text="pendingConfirm.codigo_demo"></span>
+                        </div>
+                        <label>Código de confirmação</label>
+                        <input type="text" x-model="confirmCode" maxlength="6" placeholder="000000" style="text-align:center; letter-spacing: 8px; font-size:1.3rem;">
+                        <div x-show="confirmError" style="padding: 10px; border-radius: 8px; background: rgba(239,68,68,0.2); border: 1px solid rgba(239,68,68,0.4); color:#fca5a5; font-size:0.8rem; margin-bottom: 12px;" x-text="confirmError"></div>
+                        <button @click="confirmCadastro()" class="btn-primary" style="width: 100%;">Confirmar código</button>
+                        <button @click="pendingConfirm = null; authMode = 'login'" class="btn-outline" style="width: 100%; margin-top: 10px;">← Voltar ao login</button>
+                    </div>
+                </template>
+
+                <!-- Login -->
+                <template x-if="!pendingConfirm && authMode === 'login'">
+                    <div>
+                        <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 8px;">Surfe as melhores ondas no momento certo!</h3>
+                        <p style="font-size: 0.85rem; color: #9ca3af; margin-bottom: 20px;">Entre e descubra o que os mercados vão fazer <strong>antes</strong> da manchete sair — não depois.</p>
+                        <form @submit.prevent="handleLogin()">
+                            <label>E-mail</label>
+                            <input type="email" x-model="authForm.email" required placeholder="seu@email.com">
+                            <label>Senha</label>
+                            <input type="password" x-model="authForm.senha" required placeholder="••••••••">
+                            <div x-show="authError" style="padding: 10px; border-radius: 8px; background: rgba(239,68,68,0.2); border: 1px solid rgba(239,68,68,0.4); color:#fca5a5; font-size:0.8rem; margin-bottom: 12px;" x-text="authError"></div>
+                            <button type="submit" class="btn-primary" style="width: 100%;">Entrar</button>
+                        </form>
+                        <div style="margin-top: 16px; text-align: center; font-size: 0.85rem; color: #9ca3af;">
+                            Não tem conta? <a href="#" @click.prevent="authMode = 'register'; authError = ''" style="color: #10b981; font-weight: 600;">Cadastre-se grátis</a>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Cadastro -->
+                <template x-if="!pendingConfirm && authMode === 'register'">
+                    <div>
+                        <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 8px;">Crie sua conta e comece grátis</h3>
+                        <p style="font-size: 0.85rem; color: #9ca3af; margin-bottom: 12px;">Confirmação por e-mail ou WhatsApp. No cadastro, você já ganha <strong style="color:#34d399;">7 dias Premium grátis</strong>.</p>
+                        <form @submit.prevent="handleRegister()">
+                            <label>Nome Completo</label>
+                            <input type="text" x-model="authForm.nome" required placeholder="Seu nome">
+                            <label>E-mail</label>
+                            <input type="email" x-model="authForm.email" required placeholder="seu@email.com">
+                            <label>Canal de confirmação</label>
+                            <select x-model="authForm.canal">
+                                <option value="email">📧 E-mail</option>
+                                <option value="whatsapp">💬 WhatsApp</option>
+                            </select>
+                            <template x-if="authForm.canal === 'whatsapp'">
+                                <div>
+                                    <label>Número WhatsApp (DDD + número)</label>
+                                    <input type="tel" x-model="authForm.whatsapp" placeholder="5511999999999">
+                                </div>
+                            </template>
+                            <label>Senha</label>
+                            <input type="password" x-model="authForm.senha" required placeholder="••••••••">
+                            <div style="font-size: 0.7rem; color: #9ca3af; margin-top: -6px; margin-bottom: 16px;">Mín. 8 chars, 1 maiúscula, 1 número, 1 símbolo (!@#$)</div>
+                            <div x-show="authError" style="padding: 10px; border-radius: 8px; background: rgba(239,68,68,0.2); border: 1px solid rgba(239,68,68,0.4); color:#fca5a5; font-size:0.8rem; margin-bottom: 12px;" x-text="authError"></div>
+                            <button type="submit" class="btn-primary" style="width: 100%;">Cadastrar e receber código</button>
+                        </form>
+                        <div style="margin-top: 16px; text-align: center; font-size: 0.85rem; color: #9ca3af;">
+                            Já tem conta? <a href="#" @click.prevent="authMode = 'login'; authError = ''" style="color: #10b981; font-weight: 600;">Faça login</a>
+                        </div>
+                    </div>
+                </template>
+            </section>
+
+            <!-- Espaços publicitários (visíveis mesmo sem login) -->
+            <section style="display: grid; gap: 16px;">
+                <h3 style="font-size: 0.8rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.08em; text-align: center;">Espaço Publicitário — Topo</h3>
+                <a href="/anuncio/leaderboard-topo" class="ad-slot" style="height: 90px;">
+                    <span style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em;">Publicidade</span>
+                    <span style="font-size: 0.9rem; font-weight: 600;">Anuncie aqui — 728x90</span>
+                </a>
+            </section>
+
+            <footer style="text-align: center; font-size: 0.75rem; color: #6b7280; padding: 16px;">
+                © 2026 Radar de Finanças • Fontes: Banco Central, IBGE, B3
+            </footer>
+        </main>
+    </template>
+
+    <!-- ======================================================= -->
+    <!-- PAINEL LOGADO -->
+    <!-- ======================================================= -->
+    <template x-if="user && user.token">
+        <main style="max-width: 1280px; margin: 24px auto; padding: 0 16px; display: grid; gap: 24px;">
+
+            <!-- Hero com indicadores reais -->
+            <section class="glass-card" style="padding: 28px; background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(59,130,246,0.08));">
+                <div style="display: grid; grid-template-columns: 1.6fr 1fr; gap: 28px; align-items: center;">
+                    <div>
+                        <span class="badge badge-blue" style="margin-bottom: 12px;">Portal de Oportunidades</span>
+                        <h2 style="font-size: 1.9rem; font-weight: 800; line-height: 1.2; margin-bottom: 12px;">Transformando Crises em Oportunidades</h2>
+                        <p style="color: #9ca3af; font-size: 0.95rem; line-height: 1.6; margin-bottom: 18px;">
+                            Bem-vindo, <strong x-text="user.nome"></strong>! Veja as manchetes do dia e os indicadores em tempo real.
+                        </p>
+                        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                            <a href="#manchetes" class="btn-primary">Ver Manchetes de Hoje</a>
+                            <a href="#realtime" class="btn-outline">Gráficos ao Vivo</a>
+                        </div>
+                    </div>
+                    <div class="glass-card" style="padding: 18px; text-align: center; border-color: rgba(16,185,129,0.3);">
+                        <div style="font-size: 0.8rem; color: #9ca3af; margin-bottom: 6px;">SELIC META HOJE</div>
+                        <div class="mono" style="font-size: 2.2rem; font-weight: 800; color: #10b981;" x-text="indicadores.selic || '—'"></div>
+                        <div style="font-size: 0.75rem; color: #34d399; margin-top: 4px;">▲ Fonte: Banco Central</div>
+                        <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border-card); font-size: 0.8rem; color: #9ca3af;">
+                            IPCA 12M: <span class="mono" style="color:#fff; font-weight:600;" x-text="indicadores.ipca_12m || '—'"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Indicadores ao Vivo -->
+            <section class="glass-card" style="padding: 20px 28px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px;">
+                    <div>
+                        <div style="font-size: 0.75rem; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">Meta SELIC (a.a.)</div>
+                        <div class="mono" style="font-size: 1.6rem; font-weight: 700; color: #10b981;" x-text="indicadores.selic ?? '—'"></div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.75rem; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">IPCA 12 Meses</div>
+                        <div class="mono" style="font-size: 1.6rem; font-weight: 700; color: #60a5fa;" x-text="indicadores.ipca_12m ?? '—'"></div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.75rem; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">Dólar Comercial (R$)</div>
+                        <div class="mono" style="font-size: 1.6rem; font-weight: 700; color: #fbbf24;" x-text="indicadores.dolar ?? '—'"></div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.75rem; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">IBOVESPA</div>
+                        <div class="mono" style="font-size: 1.6rem; font-weight: 700; color: #c084fc;" x-text="indicadores.ibovespa_valor ?? '—'"></div>
+                        <div style="font-size: 0.75rem; color: #9ca3af; margin-top: 2px;"><span x-text="indicadores.ibovespa_var ? 'Variação: ' + indicadores.ibovespa_var + '%' : ''"></span></div>
+                    </div>
+                </div>
+                <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-card); font-size: 0.7rem; color: #6b7280;">
+                    Fontes: Banco Central (SGS) e Yahoo Finance (B3) • Atualizado em <span class="mono" x-text="indicadores.atualizado_em ?? '—'"></span>
+                </div>
+            </section>
+
+            <!-- Banner publicitário -->
+            <a href="/anuncio/banner-hero" class="ad-slot" style="height: 100px; position: relative;">
+                <span style="position:absolute; top:8px; left:12px; font-size:0.65rem; text-transform:uppercase; letter-spacing:0.1em;">Publicidade</span>
+                <span style="font-size:1rem; font-weight:600;">Seu anúncio aqui — Negocie este espaço →</span>
+            </a>
+
+            <!-- Manchetes do dia (só para logados) -->
+            <section id="manchetes" class="glass-card" style="padding: 26px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
+                    <div>
+                        <h3 style="font-size: 1.3rem; font-weight: 700;">📰 Manchetes do Dia</h3>
+                        <p style="font-size: 0.8rem; color: #9ca3af;">Headlines de Valor, InfoMoney, Exame, Bloomberg e Financial Times • <span class="mono" x-text="manchetes.data_referencia ?? ''"></span></p>
+                    </div>
+                    <button @click="loadManchetes(true)" class="btn-outline" style="padding: 6px 12px; font-size: 0.8rem;">🔄 Atualizar</button>
+                </div>
+
+                <div x-show="loadingManchetes" style="padding: 24px; text-align:center; color:#9ca3af;">Carregando headlines...</div>
+
+                <template x-if="!loadingManchetes && manchetes.por_fonte">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
+                        <!-- Resumo nacional/internacional no topo -->
+                        <template x-if="user.email === 'admin@exemplo.com'">
+                            <div style="grid-column: 1 / -1; padding: 12px 16px; border-radius: 10px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3); font-size: 0.85rem; color:#93c5fd;">
+                                🇧🇷 <strong>Nacionais:</strong> <span x-text="manchetes.nacionais ?? 0"></span> headlines
+                                • 🌍 <strong>Internacionais:</strong> <span x-text="manchetes.internacionais ?? 0"></span> headlines
+                            </div>
+                        </template>
+
+                        <template x-for="(headlines, fonte) in manchetes.por_fonte" :key="fonte">
+                            <div style="padding: 16px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-card);">
+                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                                    <span style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                                        <span class="badge badge-blue" x-text="fonte"></span>
+                                        <span style="font-size:0.68rem; color:#9ca3af;" x-text="headlines.length ? headlines[0].pais : ''"></span>
+                                    </span>
+                                    <span style="font-size:0.7rem; color:#6b7280;" x-text="headlines.length + ' headlines'"></span>
+                                </div>
+                                <div style="display:grid; gap:12px;">
+                                    <template x-for="(item, idx) in headlines" :key="item.link + idx">
+                                        <div>
+                                            <a :href="item.link" target="_blank" rel="noopener" style="color:#e5e7eb; text-decoration:none; font-size:0.9rem; font-weight:600; line-height:1.4; display:block; transition:color .15s;" x-text="item.titulo" @mouseover="$event.target.style.color='#10b981'" @mouseout="$event.target.style.color='#e5e7eb'"></a>
+                                            <div style="font-size:0.7rem; color:#9ca3af; margin-top:3px;">→ Abrir matéria completa</div>
+                                        </div>
+                                    </template>
+                                    <div x-show="!headlines.length" style="font-size:0.85rem; color:#9ca3af;">Nenhuma headline disponível agora.</div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+            </section>
+
+            <!-- Banner publicitário in-content -->
+            <a href="/anuncio/in-content" class="ad-slot" style="height: 90px;">
+                <span style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em;">Publicidade In-Content</span>
+                <span style="font-size: 0.9rem; font-weight: 600;">Anuncie entre as manchetes — Negocie →</span>
+            </a>
+
+            <!-- ============ BLOCO PREMIUM UNIFICADO ============ -->
+            <section id="premium" class="glass-card" style="padding: 28px; background: linear-gradient(135deg, rgba(139,92,246,0.10), rgba(17,24,39,0.7));">
+                <!-- Cabeçalho -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+                    <div>
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <span class="badge badge-amber">🏆 Premium</span>
+                            <span x-show="user.plano === 'premium'" class="badge" style="background:rgba(16,185,129,0.15); color:#34d399; border-color:rgba(16,185,129,0.3);">✓ Ativo</span>
+                            <span x-show="user.plano !== 'premium'" class="badge badge-blue">Exclusivo</span>
+                        </div>
+                        <h3 style="font-size: 1.4rem; font-weight: 800; margin-top: 8px;">🤖 Vai ficar de fora das melhores análises e dicas incríveis sobre como analisar e se posicionar no mercado?</h3>
+                        <p style="font-size: 0.85rem; color: #9ca3af;">Análises completas • gráficos em tempo real • relatórios PDF • alertas</p>
+                    </div>
+                    <template x-if="user.plano === 'premium'">
+                        <span style="font-size:0.8rem; color:#10b981;" x-text="sseStatus"></span>
+                    </template>
+                </div>
+
+                <!-- CONTEÚDO PREMIUM (já assinante/trial) -->
+                <template x-if="user.plano === 'premium'">
+                    <div style="display:grid; gap:18px;">
+                        <div style="padding:16px; border-radius:12px; background:rgba(139,92,246,0.1); border:1px solid rgba(139,92,246,0.3);">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                                <span style="font-size:0.85rem; font-weight:800; color:#c084fc; letter-spacing:0.5px;">🤖 SÍNTESE PREDITIVA DA IA AUDITÁVEL (SHA-256)</span>
+                                <button @click="upgrade()" class="btn-outline" style="padding:4px 10px; font-size:0.78rem; border-color:rgba(192,132,252,0.4); color:#c084fc;">📄 Baixar PDF Completo</button>
+                            </div>
+                            
+                            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px; margin-bottom:10px;">
+                                <template x-for="pred in aiPredictions" :key="pred.audit_id">
+                                    <div style="padding:12px; border-radius:10px; background:rgba(17,24,39,0.7); border:1px solid var(--border-card);">
+                                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                                            <span style="font-size:0.82rem; font-weight:700; color:#9ca3af;" x-text="pred.categoria"></span>
+                                            <span class="mono" style="font-size:0.9rem; font-weight:800; color:#10b981;" x-text="pred.direcao_seta + ' ' + pred.precisao_pct + '% ' + pred.tendencia"></span>
+                                        </div>
+                                        <div style="font-size:0.75rem; color:#d1d5db; margin-bottom:8px; line-height:1.4;">
+                                            <template x-for="f in pred.fatores_chave" :key="f">
+                                                <div>• <span x-text="f"></span></div>
+                                            </template>
+                                        </div>
+                                        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed rgba(255,255,255,0.1); padding-top:6px; font-size:0.72rem;">
+                                            <span style="color:#6b7280;" x-text="'Risco: ' + pred.nivel_risco"></span>
+                                            <button @click="verificarAudit(pred.audit_id)" style="background:none; border:none; color:#c084fc; cursor:pointer; font-weight:700;">🔍 SHA-256 Audit</button>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
+                                <span class="badge badge-amber">⚡ Stream SSE ao Vivo</span>
+                            </div>
+                            <div style="position:relative; height:340px; width:100%;">
+                                <canvas id="metricsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- OFERTA PARA FREE -->
+                <template x-if="user.plano !== 'premium'">
+                    <div>
+                        <div style="padding:22px; border-radius:14px; background:rgba(139,92,246,0.06); border:1px solid rgba(139,92,246,0.25); margin-bottom:16px;">
+                            <div style="display:grid; gap:10px; margin-bottom:20px;">
+                                <h4 style="font-size:1.15rem; font-weight:800;">🔒 Desbloqueie tudo no Premium</h4>
+                                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:10px; font-size:0.88rem; color:#e5e7eb;">
+                                    <div style="padding:10px 12px; border-radius:10px; background:rgba(255,255,255,0.03); border:1px solid var(--border-card);">📊 Análises diárias completas com IA preditiva</div>
+                                    <div style="padding:10px 12px; border-radius:10px; background:rgba(255,255,255,0.03); border:1px solid var(--border-card);">🎯 Previsões com percentuais de precisão</div>
+                                    <div style="padding:10px 12px; border-radius:10px; background:rgba(255,255,255,0.03); border:1px solid var(--border-card);">📈 Gráficos interativos em tempo real</div>
+                                    <div style="padding:10px 12px; border-radius:10px; background:rgba(255,255,255,0.03); border:1px solid var(--border-card);">📄 Relatórios exportáveis em PDF</div>
+                                    <div style="padding:10px 12px; border-radius:10px; background:rgba(255,255,255,0.03); border:1px solid var(--border-card);">🔔 Alertas exclusivos</div>
+                                    <div style="padding:10px 12px; border-radius:10px; background:rgba(255,255,255,0.03); border:1px solid var(--border-card);">🚫 Navegação 100% livre de propagandas</div>
+                                </div>
+                            </div>
+
+                            <div style="padding:16px; border-radius:12px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.35); text-align:center; margin-bottom:16px;">
+                                <div style="font-size:0.9rem; margin-bottom:10px;">🎁 <strong>Experimente sem pagar nada:</strong> 7 dias grátis de Premium, sem cartão de crédito</div>
+                                <button @click="ativarTrial()" class="btn-primary" style="width:100%; font-size:1rem; padding:13px;" x-text="processingTrial ? 'Ativando...' : 'Começar semana de demonstração grátis'"></button>
+                                <div x-show="trialError" style="padding:10px; border-radius:8px; background:rgba(239,68,68,0.2); border:1px solid rgba(239,68,68,0.4); color:#fca5a5; font-size:0.8rem; margin-top:12px;" x-text="trialError"></div>
+                            </div>
+
+                            <div style="text-align:center;">
+                                <div style="font-size:0.85rem; color:#9ca3af; margin-bottom:10px;">Ou assine agora e garanta o plano completo:</div>
+                                <button @click="openCheckout()" class="btn-outline" style="width:100%; padding:13px; font-size:0.95rem; border-color:rgba(139,92,246,0.4); color:#c084fc; font-weight:700;">Plano Mensal Premium — R$ 19,90</button>
+                                <p style="font-size:0.75rem; color:#6b7280; margin-top:12px;">Cancele quando quiser • Sem fidelidade</p>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </section>
+
+            <!-- Banner sidebar -->
+            <a href="/anuncio/sidebar-direita" class="ad-slot" style="height: 120px;">
+                <span style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em;">Publicidade</span>
+                <span style="font-size: 0.9rem; font-weight: 600;">Espaço 300x250 disponível — Negocie →</span>
+            </a>
+
+            <footer style="text-align: center; font-size: 0.75rem; color: #6b7280; padding: 16px;">
+                © 2026 Radar de Finanças • Fontes: Banco Central, IBGE, B3 • <a href="/espacos-publicidade" style="color:#6b7280;">Espaços publicitários</a>
+            </footer>
+        </main>
+    </template>
+
+    <!-- MODAL CHECKOUT PLANO MENSAL -->
+    <div x-show="showCheckout" style="position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 1000;" x-cloak>
+        <div class="glass-card" style="width:100%; max-width:440px; padding:32px; position:relative;">
+            <button @click="showCheckout = false" style="position:absolute; top:14px; right:16px; background:none; border:none; color:#9ca3af; font-size:1.4rem; cursor:pointer;">&times;</button>
+
+            <div x-show="!checkoutSuccess">
+                <h3 style="font-size:1.5rem; font-weight:800; margin-bottom:6px;">Plano Mensal Premium</h3>
+                <p style="font-size:0.9rem; color:#9ca3af; margin-bottom:18px;">Acesso completo a análises da IA, gráficos ao vivo e relatórios PDF.</p>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:14px; border-radius:10px; background:rgba(255,255,255,0.03); border:1px solid var(--border-card); margin-bottom:16px;">
+                    <div>
+                        <div style="font-weight:700;">Premium Mensal</div>
+                        <div style="font-size:0.75rem; color:#9ca3af;">cobrado mensalmente • cancele quando quiser</div>
+                    </div>
+                    <div class="mono" style="font-size:1.3rem; font-weight:800; color:#10b981;">R$ 19,90</div>
+                </div>
+
+                <div x-show="checkoutError" style="padding:10px; border-radius:8px; background:rgba(239,68,68,0.2); border:1px solid rgba(239,68,68,0.4); color:#fca5a5; font-size:0.8rem; margin-bottom:12px;" x-text="checkoutError"></div>
+
+                <button @click="processPayment()" class="btn-primary" style="width:100%; font-size:1rem; padding:14px;" x-text="processing ? 'Processando...' : 'Confirmar pagamento (simulado)'"></button>
+                <p style="font-size:0.7rem; color:#6b7280; margin-top:12px; text-align:center;">
+                    🧪 Checkout de demonstração. Em produção será integrado ao Stripe / Mercado Pago / PIX.
+                </p>
+            </div>
+
+            <div x-show="checkoutSuccess" style="text-align:center;">
+                <div style="font-size:3rem; margin-bottom:12px;">🎉</div>
+                <h3 style="font-size:1.4rem; font-weight:800; margin-bottom:8px;">Assinatura ativada!</h3>
+                <p style="font-size:0.9rem; color:#9ca3af; margin-bottom:10px;" x-text="checkoutMsg"></p>
+                <p style="font-size:0.8rem; color:#34d399; font-weight:600; margin-bottom:20px;">Você agora é Premium 🏆</p>
+                <button @click="showCheckout = false; finalizarUpgrade()" class="btn-primary" style="width:100%;">Continuar navegando</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alpine.js Application Logic -->
+    <script>
+        function radarApp() {
+            return {
+                // ----- Auth state -----
+                user: JSON.parse(localStorage.getItem('radar_user') || 'null'),
+                authMode: 'login',
+                authForm: { email: '', senha: '', nome: '', canal: 'email', whatsapp: '' },
+                authError: '',
+                pendingConfirm: null,
+                confirmCode: '',
+                confirmError: '',
+                _loginSenha: '',
+
+                // ----- Data state -----
+                indicadores: {},
+                manchetes: {},
+                loadingManchetes: false,
+                sseStatus: 'Desconectado',
+                eventSource: null,
+                chart: null,
+
+                // ----- Checkout state -----
+                showCheckout: false,
+                checkoutError: '',
+                checkoutSuccess: false,
+                checkoutMsg: '',
+                processing: false,
+                processingTrial: false,
+                trialError: '',
+
+                // ----- IA Preditiva & Auditoria -----
+                aiPredictions: [],
+                showAuditModal: false,
+                auditModalData: null,
+                auditLoading: false,
+
+                init() {
+                    if (this.user && this.user.token) {
+                        this.loadIndicadores();
+                        this.loadManchetes();
+                        if (this.user.plano === 'premium') {
+                            this.initChart();
+                            this.loadAiPredictions();
+                        }
+                    }
+                },
+
+                // ============ INDICADORES ============
+                async loadIndicadores() {
+                    try {
+                        const res = await fetch('/indicadores/resumo');
+                        if (!res.ok) throw new Error('Falha ao carregar indicadores');
+                        const data = await res.json();
+                        const fmt = (v, s = '') => (v === null || v === undefined) ? '—'
+                            : Number(v).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + s;
+                        this.indicadores = {
+                            selic: fmt(data.selic?.valor, '%'),
+                            ipca_12m: fmt(data.ipca_12m?.valor, '%'),
+                            dolar: fmt(data.dolar?.valor),
+                            ibovespa_valor: data.ibovespa?.atual ? Number(data.ibovespa.atual).toLocaleString('pt-BR', { maximumFractionDigits: 0 }) : '—',
+                            ibovespa_var: data.ibovespa?.variacao_pct ?? null,
+                            atualizado_em: data.atualizado_em ? data.atualizado_em.replace('T', ' ').slice(0, 16) : '—'
+                        };
+                    } catch (err) {
+                        console.error('Erro ao carregar indicadores:', err);
+                    }
+                },
+
+                // ============ MANCHETES (exige login) ============
+                async loadManchetes(forceRefresh = false) {
+                    if (!this.user || !this.user.token) return;
+                    this.loadingManchetes = true;
+                    try {
+                        const qs = forceRefresh ? '?refresh=true' : '';
+                        const res = await fetch('/noticias/manchetes' + qs, {
+                            headers: { 'Authorization': 'Bearer ' + this.user.token }
+                        });
+                        if (res.status === 401) {
+                            this.logout();
+                            return;
+                        }
+                        if (!res.ok) throw new Error('Falha ao carregar manchetes');
+                        this.manchetes = await res.json();
+                    } catch (err) {
+                        console.error('Erro ao carregar manchetes:', err);
+                    } finally {
+                        this.loadingManchetes = false;
+                    }
+                },
+
+                // ============ IA PREDITIVA & AUDITORIA ============
+                async loadAiPredictions() {
+                    if (!this.user || !this.user.token || this.user.plano !== 'premium') return;
+                    try {
+                        const res = await fetch('/ai/predicoes', {
+                            headers: { 'Authorization': 'Bearer ' + this.user.token }
+                        });
+                        if (res.ok) {
+                            this.aiPredictions = await res.json();
+                        }
+                    } catch (err) {
+                        console.error('Erro ao carregar IA preditiva:', err);
+                    }
+                },
+
+                async verificarAudit(auditId) {
+                    this.auditLoading = true;
+                    this.auditModalData = null;
+                    this.showAuditModal = true;
+                    try {
+                        const res = await fetch('/ai/auditoria/' + auditId);
+                        const data = await res.json();
+                        this.auditModalData = data;
+                    } catch (err) {
+                        this.auditModalData = { valido: false, status: 'ERRO_DE_CONEXAO' };
+                    } finally {
+                        this.auditLoading = false;
+                    }
+                },
+
+                // ============ LOGIN / CADASTRO ============
+                async handleLogin() {
+                    this.authError = '';
+                    try {
+                        const res = await fetch('/auth/login', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ email: this.authForm.email, senha: this.authForm.senha })
+                        });
+                        const data = await res.json();
+
+                        // ✅ FAIL GRACEFULLY: cadastro pendente de confirmação
+                        // O servidor retorna HTTP 202 com require_confirmation: true
+                        // Em vez de mostrar um erro genérico, abrimos a tela de confirmação
+                        // com tudo já preenchido — o usuário sabe exatamente o que fazer.
+                        if (res.status === 202 && data.require_confirmation) {
+                            this.pendingConfirm = {
+                                canal: data.canal === 'whatsapp' ? 'WhatsApp' : 'e-mail',
+                                destino: data.destino,
+                                codigo_demo: data.codigo_demo || null,
+                                mensagem: data.mensagem,
+                                proximos_passos: data.proximos_passos,
+                            };
+                            this.confirmCode = data.codigo_demo || '';
+                            this.authError = '';
+                            return;
+                        }
+
+                        if (!res.ok) throw new Error(data.error || data.detail || 'Erro no login');
+
+                        this._loginSenha = this.authForm.senha;
+                        this.setUser(data);
+                    } catch (err) {
+                        this.authError = err.message;
+                    }
+                },
+
+                async handleRegister() {
+                    this.authError = '';
+                    const payload = {
+                        email: this.authForm.email,
+                        senha: this.authForm.senha,
+                        nome: this.authForm.nome,
+                        canal: this.authForm.canal
+                    };
+                    if (this.authForm.canal === 'whatsapp') payload.whatsapp = this.authForm.whatsapp;
+
+                    try {
+                        const res = await fetch('/auth/register', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+                        const data = await res.json();
+                        if (!res.ok) throw new Error(data.error || data.detail || 'Erro no cadastro');
+                        this.pendingConfirm = {
+                            canal: this.authForm.canal === 'whatsapp' ? 'WhatsApp' : 'e-mail',
+                            destino: this.authForm.canal === 'whatsapp' ? this.authForm.whatsapp : this.authForm.email,
+                            codigo_demo: data.codigo_demo || null
+                        };
+                        this.confirmCode = data.codigo_demo || '';
+                    } catch (err) {
+                        this.authError = err.message;
+                    }
+                },
+
+                async confirmCadastro() {
+                    this.confirmError = '';
+                    try {
+                        const res = await fetch('/auth/confirm', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ email: this.authForm.email, codigo: this.confirmCode })
+                        });
+                        const data = await res.json();
+                        if (!res.ok) throw new Error(data.error || data.detail || 'Código inválido');
+                        this._loginSenha = this.authForm.senha;
+                        this.pendingConfirm = null;
+                        this.setUser(data);
+                    } catch (err) {
+                        this.confirmError = err.message;
+                    }
+                },
+
+                setUser(data) {
+                    this.user = data;
+                    localStorage.setItem('radar_user', JSON.stringify(data));
+                    this.authMode = 'login';
+                    this.authForm = { email: '', senha: '', nome: '', canal: 'email', whatsapp: '' };
+                    this.loadIndicadores();
+                    this.loadManchetes();
+                    if (data.plano === 'premium') {
+                        this.$nextTick(() => this.initChart());
+                        this.loadAiPredictions();
+                    }
+                },
+
+                logout() {
+                    if (this.eventSource) this.eventSource.close();
+                    this.eventSource = null;
+                    this.user = null;
+                    localStorage.removeItem('radar_user');
+                    this.sseStatus = 'Desconectado';
+                    this.manchetes = {};
+                },
+
+                // ============ CHECKOUT (simulado) ============
+                openCheckout() {
+                    this.checkoutError = '';
+                    this.checkoutSuccess = false;
+                    this.showCheckout = true;
+                },
+
+                async ativarTrial() {
+                    this.trialError = '';
+                    this.processingTrial = true;
+                    try {
+                        const res = await fetch('/plano/trial', {
+                            method: 'POST',
+                            headers: { 'Authorization': 'Bearer ' + this.user.token }
+                        });
+                        const data = await res.json();
+                        if (!res.ok) throw new Error(data.error || data.detail || 'Falha ao ativar teste');
+                        window.alert(data.mensagem);
+                        // Re-login para obter token com plano premium (mesmo padrão do checkout)
+                        const login = await fetch('/auth/login', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ email: this.user.email, senha: this._loginSenha })
+                        });
+                        const loginData = await login.json();
+                        if (login.ok) {
+                            this.setUser(loginData);
+                            this.$nextTick(() => this.initChart());
+                        } else {
+                            window.location.reload();
+                        }
+                    } catch (err) {
+                        this.trialError = err.message;
+                    } finally {
+                        this.processingTrial = false;
+                    }
+                },
+
+                async processPayment() {
+                    this.checkoutError = '';
+                    this.processing = true;
+                    try {
+                        const res = await fetch('/plano/assinar', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + this.user.token
+                            }
+                        });
+                        const data = await res.json();
+                        if (!res.ok) throw new Error(data.error || data.detail || 'Falha no pagamento');
+                        this.checkoutSuccess = true;
+                        this.checkoutMsg = data.mensagem;
+                    } catch (err) {
+                        this.checkoutError = err.message;
+                    } finally {
+                        this.processing = false;
+                    }
+                },
+
+                finalizarUpgrade() {
+                    // Re-login para atualizar o token com o novo plano premium
+                    fetch('/auth/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: this.user.email, senha: this._loginSenha })
+                    }).then(async (res) => {
+                        const data = await res.json();
+                        if (res.ok) {
+                            this.setUser(data);
+                            this.$nextTick(() => this.initChart());
+                        } else {
+                            window.location.reload();
+                        }
+                    }).catch(() => window.location.reload());
+                },
+
+                upgrade() {
+                    if (this.user && this.user.token && this.user.plano === 'premium') {
+                        window.open('/plano/relatorio-pdf?token=' + encodeURIComponent(this.user.token), '_blank');
+                    } else {
+                        this.openCheckout();
+                    }
+                },
+
+                // ============ SSE (premium) ============
+                connectSSE() {
+                    if (!this.user || !this.user.token || this.user.plano !== 'premium') return;
+                    if (this.eventSource) this.eventSource.close();
+
+                    this.sseStatus = 'Conectando...';
+                    const url = `/realtime/stream?token=${encodeURIComponent(this.user.token)}`;
+                    this.eventSource = new EventSource(url);
+
+                    this.eventSource.onopen = () => { this.sseStatus = '🟢 Online (Stream Ativo)'; };
+
+                    this.eventSource.addEventListener('dados', (e) => {
+                        try {
+                            const items = JSON.parse(e.data);
+                            if (Array.isArray(items) && items.length > 0 && this.chart) {
+                                const labels = items.map(i => i.timestamp ? i.timestamp.substring(11, 16) : 'Agora').reverse();
+                                const values = items.map(i => i.valor).reverse();
+                                this.chart.data.labels = labels;
+                                this.chart.data.datasets[0].data = values;
+                                this.chart.update();
+                            }
+                        } catch (err) {
+                            console.error('Erro ao processar evento SSE:', err);
+                        }
+                    });
+
+                    this.eventSource.onerror = () => { this.sseStatus = '🔴 Reconectando stream...'; };
+                },
+
+                initChart() {
+                    const el = document.getElementById('metricsChart');
+                    if (!el || this.chart) return;
+                    const ctx = el.getContext('2d');
+                    this.chart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'],
+                            datasets: [
+                                { label: 'Receita / Oportunidades (R$)', data: [1200, 1900, 3000, 5000, 2400, 3200], borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,0.1)', fill: true, tension: 0.4 },
+                                { label: 'Volume de Transações', data: [800, 1400, 2100, 3500, 1900, 2700], borderColor: '#3b82f6', backgroundColor: 'transparent', tension: 0.4 }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: { legend: { labels: { color: '#9ca3af' } } },
+                            scales: {
+                                x: { ticks: { color: '#9ca3af' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                                y: { ticks: { color: '#9ca3af' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+                            }
+                        }
+                    });
+                    this.connectSSE();
+                }
+            };
+        }
+    </script>
+    <!-- MODAL DE AUDITORIA DE IA SHA-256 -->
+    <div x-show="showAuditModal" class="modal-overlay" style="display:none;" x-cloak>
+        <div class="modal-card" style="max-width:560px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                <h3 style="font-size:1.1rem; font-weight:800; color:#c084fc;">🛡️ Prova Criptográfica de Auditoria IA</h3>
+                <button @click="showAuditModal = false" style="background:none; border:none; color:#9ca3af; font-size:1.2rem; cursor:pointer;">✕</button>
+            </div>
+
+            <template x-if="auditLoading">
+                <div style="text-align:center; padding:30px; color:#9ca3af;">Verificando assinatura matemática SHA-256...</div>
+            </template>
+
+            <template x-if="!auditLoading && auditModalData">
+                <div style="display:grid; gap:12px; font-size:0.85rem;">
+                    <div style="padding:10px 14px; border-radius:8px;" :style="auditModalData.valido ? 'background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.4); color:#6ee7b7;' : 'background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.4); color:#fca5a5;'">
+                        <div style="font-weight:800; font-size:0.95rem; margin-bottom:4px;" x-text="auditModalData.valido ? '✅ AUDITORIA VÁLIDA: REGISTRO ÍNTEGRO' : '🚨 ADULTERAÇÃO DETECTADA'"></div>
+                        <div x-text="auditModalData.status"></div>
+                    </div>
+
+                    <div style="background:rgba(255,255,255,0.03); padding:12px; border-radius:8px; border:1px solid var(--border-card);">
+                        <div style="color:#9ca3af; font-size:0.75rem; margin-bottom:2px;">Audit ID</div>
+                        <div class="mono" style="font-size:0.8rem; font-weight:700; color:#e5e7eb;" x-text="auditModalData.audit_id"></div>
+                    </div>
+
+                    <div style="background:rgba(255,255,255,0.03); padding:12px; border-radius:8px; border:1px solid var(--border-card);">
+                        <div style="color:#9ca3af; font-size:0.75rem; margin-bottom:2px;">Hash SHA-256 Registrado (Imutável)</div>
+                        <div class="mono" style="font-size:0.75rem; word-break:break-all; color:#c084fc;" x-text="auditModalData.checksum_registrado"></div>
+                    </div>
+
+                    <div style="background:rgba(255,255,255,0.03); padding:12px; border-radius:8px; border:1px solid var(--border-card);">
+                        <div style="color:#9ca3af; font-size:0.75rem; margin-bottom:2px;">Hash SHA-256 Recalculado em Tempo Real</div>
+                        <div class="mono" style="font-size:0.75rem; word-break:break-all; color:#34d399;" x-text="auditModalData.checksum_recalculado"></div>
+                    </div>
+
+                    <div style="display:flex; justify-content:space-between; font-size:0.78rem; color:#9ca3af; padding-top:4px;">
+                        <span>Modelo: <strong style="color:#e5e7eb;" x-text="auditModalData.modelo"></strong></span>
+                        <span>Precisão: <strong style="color:#10b981;" x-text="auditModalData.precisao_pct + '%'"></strong></span>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+
+</body>
+</html>

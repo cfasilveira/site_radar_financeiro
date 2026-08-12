@@ -1,0 +1,1223 @@
+
+Aqui está o resumo atualizado do projeto Radar de Finanças, já consolidando todas as correções e decisões que fizemos:
+
+📌 Resumo do Projeto
+O Radar de Finanças será um portal responsivo e performático, que transforma crises em oportunidades.
+Não assinantes: terão acesso às manchetes diárias e a um apanhado semanal gratuito, com síntese dos principais acontecimentos.
+Assinantes premium: terão acesso às análises completas diárias, com gráficos interativos, relatórios exportáveis em PDF e alertas no WhatsApp. A inteligência artificial apontará tendências dos acontecimentos com percentuais de precisão, permitindo acompanhar a evolução dos mercados em tempo real.
+⚙️ Tecnologia
+htmx e Alpine.js para interatividade leve.
+Tailwind CSS para design responsivo.
+Chart.js/D3.js para gráficos dinâmicos.
+jsPDF para exportação de relatórios.
+Google Analytics/Matomo para rastreamento de visitas e cliques.
+WhatsApp Business API para alertas premium.
+CMS leve (WordPress/Ghost) para gestão de conteúdo.
+APIs oficiais: IBGE, Banco Central, B3 para dados econômicos confiáveis.
+🗂️ Estrutura Editorial
+Manchetes diárias: gratuitas, provocativas e com fontes/datas claras.
+Análises diárias premium: relatórios completos com cálculos e IA preditiva.
+Apanhado semanal gratuito: síntese dos impactos no Brasil e no mundo.
+Agronegócio: exportações e commodities.
+Infraestrutura: logística, energia e supply chain.
+🔎 Diferenciação frente ao mercado
+Valor Econômico / Infomoney: análises diárias, mas sem IA preditiva e relatórios exportáveis.
+Bloomberg / Financial Times: profundidade global, mas inacessíveis ao público geral.
+Radar de Finanças: provoca diariamente, entrega análises completas com IA para assinantes e mantém apanhado semanal gratuito para atrair novos leitores.
+📱 Responsividade e Performance
+Design mobile-first para leitura rápida.
+Gráficos leves (SVG, Chart.js) sem imagens pesadas.
+Lazy loading e CDN gratuita (Cloudflare) para carregamento rápido.
+🧾 Credibilidade
+Fontes oficiais: IBGE, Banco Central, FMI, Banco Mundial.
+Datas claras em cada notícia e gráfico.
+Metodologia transparente: elasticidade, regressões, séries temporais e cálculos percentuais.
+👉 O próximo passo pode ser detalhar um roadmap tecnológico com etapas de implementação, ou um plano de monetização internacional para captar público fora do Brasil. Deseja que eu avance para tecnologia ou monetização internacional?
+
+
+
+Aqui está o Plano Editorial Enxuto para o MVP custo zero do Radar de Finanças, estruturado de forma clara e certeira:
+
+📰 Estrutura Editorial
+Últimas notícias
+Resumos curtos de eventos nacionais e internacionais.
+Sempre com fonte e data identificadas.
+Linguagem direta e objetiva.
+Impacto no Brasil
+Breve análise de como o evento afeta inflação, câmbio e consumo.
+Pergunta provocativa: “Será uma oportunidade que apareceu?”.
+Repercussão global
+Texto enxuto sobre reflexos em cadeias de suprimento e mercados externos.
+Comparações rápidas com ciclos históricos.
+Agronegócio
+Exportações, crédito rural e commodities (soja, milho, carne).
+Indicadores básicos com gráficos leves.
+Infraestrutura
+Projetos de estradas, portos e energia.
+Impacto direto na logística e supply chain.
+Premium enxuto
+Relatórios simples em PDF.
+Alertas básicos via WhatsApp.
+Gráficos interativos leves (Chart.js).
+🎯 Diretrizes de Conteúdo
+Clareza: textos curtos, sem jargões excessivos.
+Credibilidade: fontes oficiais (IBGE, Banco Central, FMI, B3).
+Atualidade: cada notícia com timestamp visível.
+Provocação: sempre deixar a pergunta “Será uma oportunidade?”.
+Performance: gráficos leves, sem imagens pesadas.
+📊 Frequência de Publicação
+Diário: resumos de notícias e impacto no Brasil.
+Semanal: análises globais e agronegócio.
+Mensal: relatórios premium com cálculos e exportação em PDF.
+🚀 Diferenciação
+Valor Econômico / Infomoney: foco em notícias, sem provocação ao leitor.
+Bloomberg / Financial Times: profundidade global, mas inacessíveis ao público geral.
+Radar de Finanças MVP: gratuito, leve, responsivo, provocativo e com premium acessível.
+👉 O próximo passo pode ser detalhar um plano de monetização inicial para já gerar receita mesmo na versão custo zero, ou um roadmap editorial para organizar a frequência e responsáveis por cada seção. Deseja que eu avance para monetização ou para o roadmap editorial?
+
+
+
+📰 Estrutura Editorial
+Manchetes diárias gratuitas
+Principais eventos econômicos nacionais e internacionais.
+Resumos curtos e objetivos, com fonte e data identificadas.
+Provocação ao leitor: “Será uma oportunidade que apareceu?”.
+Análises diárias premium
+Relatórios completos com cálculos matemáticos e metodologias consolidadas.
+Gráficos interativos leves (Chart.js).
+IA apontando tendências com percentuais de precisão.
+Exportação em PDF e alertas no WhatsApp.
+Apanhado semanal gratuito
+Síntese dos principais acontecimentos da semana.
+Breve análise dos impactos no Brasil e no mundo.
+Comparações rápidas com ciclos históricos.
+Agronegócio
+Exportações, crédito rural e commodities.
+Indicadores básicos com gráficos leves.
+Infraestrutura
+Projetos de estradas, portos e energia.
+Impacto direto na logística e supply chain.
+🎯 Diretrizes de Conteúdo
+Clareza: textos curtos e objetivos para não pagantes; análises completas para assinantes.
+Credibilidade: fontes oficiais (IBGE, Banco Central, FMI, B3).
+Atualidade: cada notícia e gráfico com timestamp.
+Provocação: sempre deixar a pergunta “Será uma oportunidade?”.
+IA aplicada: análises premium com percentuais de precisão e evolução dos acontecimentos.
+📊 Frequência de Publicação
+Diário (assinantes): análises completas com gráficos, cálculos e tendências da IA.
+Diário (não pagantes): manchetes curtas e provocativas.
+Semanal (não pagantes): apanhado geral com síntese dos impactos.
+🚀 Diferenciação
+Valor Econômico / Infomoney: oferecem análises diárias, mas sem IA de tendências e percentuais de precisão.
+Bloomberg / Financial Times: profundidade global, mas inacessíveis ao público geral.
+Radar de Finanças: provoca diariamente, entrega análises completas com IA para assinantes e mantém apanhado semanal gratuito para atrair novos leitores.
+
+
+Aqui está a parte tecnológica que sustentará o desenvolvimento do Radar de Finanças, pensada para o MVP custo zero e escalável para versões futuras:
+
+⚙️ Stack Tecnológica
+Front-end leve
+htmx: interatividade sem frameworks pesados.
+Alpine.js: lógica mínima para interações dinâmicas.
+Tailwind CSS: estilização responsiva e rápida.
+Back-end enxuto
+Node.js ou Python (Flask/Django): APIs simples e seguras.
+CMS leve (WordPress ou Ghost): para gestão de conteúdo sem custo inicial.
+Banco de dados
+SQLite/PostgreSQL: armazenamento de notícias, relatórios e histórico de cliques.
+Redis: cache para performance em consultas frequentes.
+Gráficos e relatórios
+Chart.js / D3.js: gráficos interativos leves.
+jsPDF: exportação de relatórios em PDF.
+Analytics
+Google Analytics: rastreamento de visitas e cliques.
+Matomo: alternativa open-source para maior controle de dados.
+Alertas
+WhatsApp Business API: envio de notificações premium em tempo real.
+Infraestrutura
+Hospedagem básica (Netlify, Vercel ou GitHub Pages para MVP).
+CDN gratuita (Cloudflare): distribuição global e redução de latência.
+HTTPS obrigatório: segurança e credibilidade.
+🔐 Segurança
+Content Security Policy para evitar execução de scripts externos.
+CSRF tokens em requisições.
+Logs de auditoria para monitorar acessos e tentativas de invasão.
+Validação de inputs para prevenir XSS e SQL injection.
+🚀 Escalabilidade
+MVP com CMS gratuito e APIs abertas (IBGE, Banco Central, B3).
+Evolução para microserviços em Node.js/Python conforme crescimento.
+Possibilidade de integrar machine learning para análises preditivas com percentuais de precisão.
+👉 O próximo passo pode ser detalhar um roadmap tecnológico com etapas de implementação, ou um plano de integração de APIs para conectar fontes oficiais de dados ao Radar de Finanças. Deseja que eu avance para o roadmap ou para a integração de APIs?
+
+## 📁 Arquitetura de Diretórios (Versão Final Otimizada)
+
+```
+meu-site-mvp/
+├── app/
+│   ├── __init__.py
+│   ├── main.py                      # Entry point da aplicação
+│   │
+│   ├── core/                        # 🔥 Núcleo ultra-leve
+│   │   ├── __init__.py
+│   │   └── core.py                  # Config + Logger unificados (70 linhas)
+│   │
+│   ├── shared/                      # 🔥 Recursos compartilhados
+│   │   ├── __init__.py
+│   │   ├── database.py              # DB simplificado (50 linhas)
+│   │   ├── security.py              # Crypto + JWT unificados (80 linhas)
+│   │   └── middleware.py            # Middleware único (45 linhas)
+│   │
+│   └── modules/                     # 🔥 Módulos independentes
+│       ├── __init__.py
+│       │
+│       ├── auth/                    # Módulo 1: Autenticação
+│       │   ├── __init__.py
+│       │   ├── models.py            # Pydantic models (30 linhas)
+│       │   ├── service.py           # Lógica de negócio (55 linhas)
+│       │   └── routes.py            # Rotas HTTP (25 linhas)
+│       │
+│       └── realtime/                # Módulo 2: Tempo Real
+│           ├── __init__.py
+│           ├── manager.py           # Gerenciador SSE (50 linhas)
+│           └── routes.py            # Rotas SSE (40 linhas)
+│
+├── data/                            # 🔥 Dados persistentes
+│   └── app.db                       # SQLite (criado automaticamente)
+│
+├── logs/                            # 🔥 Logs estruturados
+│   ├── app.log
+│   ├── auth.log
+│   ├── http.log
+│   └── realtime.log
+│
+├── scripts/                         # 🔥 Utilitários
+│   ├── __init__.py
+│   └── init_db.py                   # Popula dados iniciais
+│
+├── tests/                           # 🔥 Testes
+│   ├── __init__.py
+│   ├── test_auth.py
+│   └── test_realtime.py
+│
+├── .env.example                     # Variáveis de ambiente
+├── .gitignore
+├── pyproject.toml                   # Dependências (uv)
+├── Dockerfile                       # Container otimizado
+├── docker-compose.yml               # Dev local
+├── fly.toml                         # Deploy no Fly.io
+└── README.md
+```
+
+---
+
+## 📄 Todos os Scripts Corrigidos
+
+### 1. `app/__init__.py`
+```python
+# app/__init__.py
+"""Meu Site MVP - Aplicação modular e otimizada"""
+__version__ = "1.0.0"
+```
+
+---
+
+### 2. `app/core/__init__.py`
+```python
+# app/core/__init__.py
+from .core import settings, get_logger, Logger
+
+__all__ = ["settings", "get_logger", "Logger"]
+```
+
+---
+
+### 3. `app/core/core.py`
+```python
+# app/core/core.py
+"""Core unificado: Config + Logger"""
+import os
+import logging
+import json
+from pathlib import Path
+from datetime import datetime
+from functools import lru_cache
+from typing import Optional, Dict, Any
+from logging.handlers import RotatingFileHandler
+from pydantic_settings import BaseSettings
+
+# ============ CONFIGURAÇÃO ============
+class Settings(BaseSettings):
+    """Configurações centralizadas"""
+    ENV: str = "development"
+    DEBUG: bool = True
+    JWT_SECRET_KEY: str = "dev-secret-key-change-in-production"
+    JWT_EXPIRE_MINUTES: int = 60
+    DATABASE_URL: str = "sqlite:///data/app.db"
+    LOG_LEVEL: str = "INFO"
+    STRIPE_SECRET_KEY: Optional[str] = None
+    STRIPE_WEBHOOK_SECRET: Optional[str] = None
+    
+    class Config:
+        env_file = ".env"
+        env_file_encoding = "utf-8"
+        extra = "ignore"
+
+@lru_cache()
+def get_settings() -> Settings:
+    """Singleton de configurações"""
+    return Settings()
+
+settings = get_settings()
+
+# ============ LOGGER ============
+class Logger:
+    """Logger ultra-slim com JSON format"""
+    _loggers: Dict[str, 'Logger'] = {}
+    
+    def __new__(cls, name: str) -> 'Logger':
+        if name not in cls._loggers:
+            cls._loggers[name] = super().__new__(cls)
+        return cls._loggers[name]
+    
+    def __init__(self, name: str):
+        if hasattr(self, '_initialized'):
+            return
+        
+        self.name = name
+        self.logger = logging.getLogger(f"app.{name}")
+        self.logger.setLevel(getattr(logging, settings.LOG_LEVEL))
+        self.logger.propagate = False
+        
+        # Cria diretório de logs
+        log_dir = Path("logs")
+        log_dir.mkdir(exist_ok=True)
+        
+        # Handler com rotação
+        handler = RotatingFileHandler(
+            log_dir / f"{name}.log",
+            maxBytes=5_000_000,  # 5MB
+            backupCount=3
+        )
+        handler.setFormatter(self._formatter())
+        self.logger.addHandler(handler)
+        
+        self._initialized = True
+    
+    def _formatter(self):
+        """Formatter JSON para facilitar parsing"""
+        class JSONFormatter(logging.Formatter):
+            def format(self, record):
+                return json.dumps({
+                    "ts": datetime.now().isoformat(timespec='seconds'),
+                    "m": record.name.split('.')[-1],
+                    "lvl": record.levelname,
+                    "msg": record.getMessage(),
+                    "ctx": getattr(record, 'extra', {})
+                }, separators=(',', ':'))
+        return JSONFormatter()
+    
+    def _log(self, level: int, msg: str, extra: Optional[Dict] = None):
+        if not self.logger.isEnabledFor(level):
+            return
+        self.logger.log(level, msg, extra={'extra': extra or {}})
+    
+    def debug(self, msg: str, extra: Optional[Dict] = None):
+        self._log(logging.DEBUG, msg, extra)
+    
+    def info(self, msg: str, extra: Optional[Dict] = None):
+        self._log(logging.INFO, msg, extra)
+    
+    def warning(self, msg: str, extra: Optional[Dict] = None):
+        self._log(logging.WARNING, msg, extra)
+    
+    def error(self, msg: str, extra: Optional[Dict] = None):
+        self._log(logging.ERROR, msg, extra)
+    
+    def critical(self, msg: str, extra: Optional[Dict] = None):
+        self._log(logging.CRITICAL, msg, extra)
+
+def get_logger(name: str) -> Logger:
+    """Factory para logger"""
+    return Logger(name)
+```
+
+---
+
+### 4. `app/shared/__init__.py`
+```python
+# app/shared/__init__.py
+from .database import db, Database
+from .security import security, Security
+from .middleware import Middleware
+
+__all__ = ["db", "Database", "security", "Security", "Middleware"]
+```
+
+---
+
+### 5. `app/shared/database.py`
+```python
+# app/shared/database.py
+"""Database simplificado com retry automático"""
+import aiosqlite
+from contextlib import asynccontextmanager
+from pathlib import Path
+import asyncio
+from typing import AsyncGenerator, Optional
+from app.core.core import settings
+
+class Database:
+    """Database enxuto e eficiente"""
+    
+    def __init__(self):
+        self.path = Path(settings.DATABASE_URL.replace("sqlite:///", ""))
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        self._max_retries = 3
+    
+    @asynccontextmanager
+    async def connect(self) -> AsyncGenerator[aiosqlite.Connection, None]:
+        """Conexão com retry automático em caso de lock"""
+        for attempt in range(self._max_retries):
+            try:
+                conn = await aiosqlite.connect(
+                    str(self.path),
+                    timeout=10,
+                    isolation_level=None  # Auto-commit
+                )
+                
+                # Configurações de performance
+                await conn.execute("PRAGMA journal_mode = WAL")
+                await conn.execute("PRAGMA synchronous = NORMAL")
+                await conn.execute("PRAGMA cache_size = -10000")
+                await conn.execute("PRAGMA foreign_keys = ON")
+                conn.row_factory = aiosqlite.Row
+                
+                yield conn
+                await conn.close()
+                return
+                
+            except aiosqlite.OperationalError as e:
+                if "locked" in str(e).lower() and attempt < self._max_retries - 1:
+                    await asyncio.sleep(0.1 * (2 ** attempt))  # Backoff
+                    continue
+                raise
+    
+    async def init(self):
+        """Inicializa schema do banco"""
+        async with self.connect() as conn:
+            # Usuários
+            await conn.execute("""
+                CREATE TABLE IF NOT EXISTS usuarios (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    email TEXT UNIQUE NOT NULL,
+                    senha_hash TEXT NOT NULL,
+                    nome TEXT NOT NULL,
+                    plano TEXT DEFAULT 'free',
+                    stripe_customer_id TEXT,
+                    stripe_subscription_id TEXT,
+                    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    ultimo_login TIMESTAMP
+                )
+            """)
+            
+            # Dados para gráficos
+            await conn.execute("""
+                CREATE TABLE IF NOT EXISTS dados_metricas (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    usuario_id INTEGER NOT NULL,
+                    categoria TEXT NOT NULL,
+                    valor REAL NOT NULL,
+                    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
+                )
+            """)
+            
+            # Índices para performance
+            await conn.execute("""
+                CREATE INDEX IF NOT EXISTS idx_metrics_user_time 
+                ON dados_metricas(usuario_id, timestamp DESC)
+            """)
+            
+            await conn.execute("""
+                CREATE INDEX IF NOT EXISTS idx_usuarios_email 
+                ON usuarios(email)
+            """)
+    
+    async def execute(self, query: str, params: tuple = ()):
+        """Helper para executar queries"""
+        async with self.connect() as conn:
+            return await conn.execute(query, params)
+    
+    async def fetch_one(self, query: str, params: tuple = ()):
+        """Helper para buscar um registro"""
+        async with self.connect() as conn:
+            return await conn.fetch_one(query, params)
+    
+    async def fetch_all(self, query: str, params: tuple = ()):
+        """Helper para buscar múltiplos registros"""
+        async with self.connect() as conn:
+            return await conn.fetch_all(query, params)
+
+# Instância global
+db = Database()
+```
+
+---
+
+### 6. `app/shared/security.py`
+```python
+# app/shared/security.py
+"""Security unificado: Crypto + JWT + Validações"""
+import bcrypt
+import jwt
+import secrets
+import re
+from datetime import datetime, timedelta, timezone
+from typing import Dict, Any, Optional
+from fastapi import HTTPException
+from app.core.core import settings
+
+class Security:
+    """Serviço de segurança unificado e otimizado"""
+    
+    # Configurações
+    _secret = settings.JWT_SECRET_KEY
+    _algorithm = "HS256"
+    _expire_minutes = settings.JWT_EXPIRE_MINUTES
+    
+    # Cache de hashes (limitado)
+    _hash_cache: Dict[str, str] = {}
+    _hash_cache_max = 50
+    
+    # Regex compilada uma vez (lazy)
+    _email_regex = None
+    
+    # ============ CRYPTO ============
+    @classmethod
+    def hash_password(cls, password: str) -> str:
+        """Gera hash com cache para evitar recálculo"""
+        if not password:
+            return ""
+        
+        # Cache para performance
+        if password in cls._hash_cache:
+            return cls._hash_cache[password]
+        
+        hashed = bcrypt.hashpw(
+            password.encode('utf-8'),
+            bcrypt.gensalt(rounds=12)
+        ).decode('utf-8')
+        
+        # Cache limitado (evita memory leak)
+        if len(cls._hash_cache) < cls._hash_cache_max:
+            cls._hash_cache[password] = hashed
+        
+        return hashed
+    
+    @classmethod
+    def verify_password(cls, password: str, hashed: str) -> bool:
+        """Verifica senha com fallback seguro"""
+        # Fail Fast
+        if not password or not hashed:
+            return False
+        
+        # Valida formato do hash
+        if not hashed.startswith('$2b$'):
+            return False
+        
+        try:
+            return bcrypt.checkpw(
+                password.encode('utf-8'),
+                hashed.encode('utf-8')
+            )
+        except (ValueError, TypeError):
+            # Fallback: não expõe detalhes
+            return False
+    
+    @classmethod
+    def generate_token(cls, length: int = 32) -> str:
+        """Gera token criptográfico seguro"""
+        return secrets.token_urlsafe(length)
+    
+    # ============ JWT ============
+    @classmethod
+    def create_token(cls, user_id: int, email: str, plano: str) -> str:
+        """Cria token JWT"""
+        payload = {
+            "sub": str(user_id),
+            "email": email,
+            "plano": plano,
+            "iat": datetime.now(timezone.utc),
+            "exp": datetime.now(timezone.utc) + timedelta(minutes=cls._expire_minutes)
+        }
+        return jwt.encode(payload, cls._secret, algorithm=cls._algorithm)
+    
+    @classmethod
+    def verify_token(cls, token: str) -> Dict[str, Any]:
+        """Verifica token com validação rigorosa"""
+        if not token:
+            raise HTTPException(401, "Token não fornecido")
+        
+        try:
+            return jwt.decode(
+                token,
+                cls._secret,
+                algorithms=[cls._algorithm],
+                options={
+                    "verify_signature": True,
+                    "verify_exp": True,
+                    "require": ["sub", "exp"]
+                }
+            )
+        except jwt.ExpiredSignatureError:
+            raise HTTPException(401, "Token expirado")
+        except jwt.InvalidTokenError:
+            raise HTTPException(401, "Token inválido")
+    
+    @classmethod
+    def get_user_id_from_token(cls, token: str) -> int:
+        """Extrai user_id do token (útil para middlewares)"""
+        payload = cls.verify_token(token)
+        return int(payload["sub"])
+    
+    # ============ VALIDAÇÕES ============
+    @classmethod
+    def validar_email(cls, email: str) -> bool:
+        """Valida email com regex compilada uma vez"""
+        if cls._email_regex is None:
+            cls._email_regex = re.compile(
+                r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+            )
+        return bool(cls._email_regex.match(email))
+    
+    @classmethod
+    def validar_senha(cls, senha: str) -> tuple[bool, Optional[str]]:
+        """Valida força da senha - retorna (válido, mensagem_erro)"""
+        if len(senha) < 8:
+            return False, "Senha deve ter no mínimo 8 caracteres"
+        if not re.search(r'[A-Z]', senha):
+            return False, "Senha deve ter pelo menos uma maiúscula"
+        if not re.search(r'[0-9]', senha):
+            return False, "Senha deve ter pelo menos um número"
+        if not re.search(r'[!@#$%^&*(),.?":{}|<>]', senha):
+            return False, "Senha deve ter pelo menos um caractere especial"
+        return True, None
+
+# Instância global
+security = Security()
+```
+
+---
+
+### 7. `app/shared/middleware.py`
+```python
+# app/shared/middleware.py
+"""Middleware unificado e otimizado"""
+from fastapi import Request, Response
+from fastapi.responses import JSONResponse
+from starlette.middleware.base import BaseHTTPMiddleware
+from app.core.core import get_logger, settings
+import time
+import uuid
+
+logger = get_logger("http")
+
+class Middleware(BaseHTTPMiddleware):
+    """Middleware único com logging e segurança"""
+    
+    # Rotas excluídas de logging
+    EXCLUDE_PATHS = {"/health", "/metrics", "/favicon.ico"}
+    
+    # Headers de segurança
+    SECURITY_HEADERS = {
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Permissions-Policy": "geolocation=(), microphone=(), camera=()",
+    }
+    
+    async def dispatch(self, request: Request, call_next):
+        # Gera ID de correlação
+        request_id = str(uuid.uuid4())[:8]
+        request.state.request_id = request_id
+        
+        start_time = time.perf_counter()
+        
+        try:
+            response = await call_next(request)
+            
+            # Adiciona headers de segurança
+            for key, value in self.SECURITY_HEADERS.items():
+                response.headers.setdefault(key, value)
+            
+            # Log apenas para rotas relevantes
+            if request.url.path not in self.EXCLUDE_PATHS:
+                duration = (time.perf_counter() - start_time) * 1000
+                self._log_request(request, response, duration, request_id)
+            
+            return response
+            
+        except Exception as e:
+            # Fallback: resposta amigável
+            logger.error(
+                "Erro não tratado",
+                {
+                    "rid": request_id,
+                    "path": request.url.path,
+                    "error": str(e)
+                }
+            )
+            
+            return JSONResponse(
+                status_code=500,
+                content={
+                    "error": "Erro interno do servidor",
+                    "request_id": request_id,
+                    "message": "Tente novamente mais tarde" if not settings.DEBUG else str(e)
+                }
+            )
+    
+    def _log_request(self, request: Request, response: Response, duration: float, request_id: str):
+        """Log estruturado da requisição"""
+        log_data = {
+            "rid": request_id,
+            "method": request.method,
+            "path": request.url.path,
+            "status": response.status_code,
+            "ms": round(duration, 2)
+        }
+        
+        # Nível baseado no status
+        if response.status_code >= 500:
+            logger.error(f"Erro servidor: {request.url.path}", log_data)
+        elif response.status_code >= 400:
+            logger.warning(f"Erro cliente: {request.url.path}", log_data)
+        elif duration > 1000:  # > 1 segundo
+            logger.warning(f"Requisição lenta: {request.url.path}", log_data)
+        else:
+            logger.info(f"Requisição OK: {request.url.path}", log_data)
+```
+
+---
+
+### 8. `app/modules/auth/__init__.py`
+```python
+# app/modules/auth/__init__.py
+from .routes import router
+from .service import AuthService
+from .models import UserCreate, UserLogin, UserResponse
+
+__all__ = ["router", "AuthService", "UserCreate", "UserLogin", "UserResponse"]
+```
+
+---
+
+### 9. `app/modules/auth/models.py`
+```python
+# app/modules/auth/models.py
+"""Modelos Pydantic para autenticação"""
+from pydantic import BaseModel, EmailStr, validator, Field
+from typing import Optional
+import re
+
+class UserCreate(BaseModel):
+    """Dados para criação de usuário"""
+    email: EmailStr
+    senha: str = Field(..., min_length=8)
+    nome: str = Field(..., min_length=2, max_length=100)
+    
+    @validator('senha')
+    def valida_senha(cls, v: str) -> str:
+        """Valida força da senha"""
+        if len(v) < 8:
+            raise ValueError("Senha deve ter no mínimo 8 caracteres")
+        if not re.search(r'[A-Z]', v):
+            raise ValueError("Senha deve ter pelo menos uma maiúscula")
+        if not re.search(r'[0-9]', v):
+            raise ValueError("Senha deve ter pelo menos um número")
+        if not re.search(r'[!@#$%^&*(),.?":{}|<>]', v):
+            raise ValueError("Senha deve ter pelo menos um caractere especial")
+        return v
+    
+    @validator('nome')
+    def valida_nome(cls, v: str) -> str:
+        """Valida nome (apenas letras e espaços)"""
+        if not re.match(r'^[a-zA-ZÀ-ÿ\s]+$', v):
+            raise ValueError("Nome deve conter apenas letras e espaços")
+        return v.strip()
+
+class UserLogin(BaseModel):
+    """Dados para login"""
+    email: EmailStr
+    senha: str
+
+class UserResponse(BaseModel):
+    """Resposta com dados do usuário"""
+    id: int
+    email: str
+    nome: str
+    plano: str
+    token: Optional[str] = None
+    
+    class Config:
+        from_attributes = True
+```
+
+---
+
+### 10. `app/modules/auth/service.py`
+```python
+# app/modules/auth/service.py
+"""Serviço de autenticação com early return"""
+from fastapi import HTTPException, status
+from app.core.core import get_logger
+from app.shared.database import db
+from app.shared.security import security
+from app.modules.auth.models import UserCreate, UserLogin, UserResponse
+
+logger = get_logger("auth")
+
+class AuthService:
+    """Serviço de autenticação enxuto"""
+    
+    @staticmethod
+    async def register(data: UserCreate) -> UserResponse:
+        """Registra novo usuário"""
+        # 🔥 Fail Fast: valida email
+        if not security.validar_email(data.email):
+            logger.warning("Email inválido", {"email": data.email})
+            raise HTTPException(400, "Email inválido")
+        
+        # 🔥 Verifica duplicidade
+        async with db.connect() as conn:
+            exists = await conn.fetch_one(
+                "SELECT id FROM usuarios WHERE email = ?", 
+                (data.email,)
+            )
+            if exists:
+                logger.warning("Email já cadastrado", {"email": data.email})
+                raise HTTPException(409, "Email já cadastrado")
+            
+            # 🔥 Insere usuário
+            hashed = security.hash_password(data.senha)
+            await conn.execute(
+                """
+                INSERT INTO usuarios (email, senha_hash, nome)
+                VALUES (?, ?, ?)
+                """,
+                (data.email, hashed, data.nome)
+            )
+            
+            # 🔥 Busca ID criado
+            row = await conn.fetch_one(
+                "SELECT id FROM usuarios WHERE email = ?",
+                (data.email,)
+            )
+            user_id = row["id"] if row else None
+        
+        # 🔥 Gera token
+        token = security.create_token(user_id, data.email, "free")
+        
+        logger.info("Usuário registrado", {"user_id": user_id, "email": data.email})
+        
+        return UserResponse(
+            id=user_id,
+            email=data.email,
+            nome=data.nome,
+            plano="free",
+            token=token
+        )
+    
+    @staticmethod
+    async def login(data: UserLogin) -> UserResponse:
+        """Login de usuário"""
+        async with db.connect() as conn:
+            # 🔥 Busca usuário
+            user = await conn.fetch_one(
+                """
+                SELECT id, email, nome, senha_hash, plano 
+                FROM usuarios 
+                WHERE email = ?
+                """,
+                (data.email,)
+            )
+            
+            # 🔥 Early Return: usuário não existe
+            if not user:
+                logger.warning("Login - usuário não existe", {"email": data.email})
+                raise HTTPException(401, "Email ou senha incorretos")
+            
+            # 🔥 Early Return: senha incorreta
+            if not security.verify_password(data.senha, user["senha_hash"]):
+                logger.warning("Login - senha incorreta", {"user_id": user["id"]})
+                raise HTTPException(401, "Email ou senha incorretos")
+            
+            # 🔥 Atualiza último login
+            await conn.execute(
+                "UPDATE usuarios SET ultimo_login = CURRENT_TIMESTAMP WHERE id = ?",
+                (user["id"],)
+            )
+        
+        # 🔥 Gera token
+        token = security.create_token(user["id"], user["email"], user["plano"])
+        
+        logger.info("Login bem-sucedido", {"user_id": user["id"]})
+        
+        return UserResponse(
+            id=user["id"],
+            email=user["email"],
+            nome=user["nome"],
+            plano=user["plano"],
+            token=token
+        )
+```
+
+---
+
+### 11. `app/modules/auth/routes.py`
+```python
+# app/modules/auth/routes.py
+"""Rotas de autenticação"""
+from fastapi import APIRouter, HTTPException
+from app.modules.auth.service import AuthService
+from app.modules.auth.models import UserCreate, UserLogin, UserResponse
+
+router = APIRouter(prefix="/auth", tags=["auth"])
+
+@router.post("/register", response_model=UserResponse)
+async def register(data: UserCreate):
+    """Registra um novo usuário"""
+    return await AuthService.register(data)
+
+@router.post("/login", response_model=UserResponse)
+async def login(data: UserLogin):
+    """Faz login do usuário"""
+    return await AuthService.login(data)
+
+@router.post("/logout")
+async def logout():
+    """Logout (cliente deve descartar token)"""
+    return {"message": "Logout realizado com sucesso"}
+```
+
+---
+
+### 12. `app/modules/realtime/__init__.py`
+```python
+# app/modules/realtime/__init__.py
+from .routes import router
+from .manager import realtime, RealtimeManager
+
+__all__ = ["router", "realtime", "RealtimeManager"]
+```
+
+---
+
+### 13. `app/modules/realtime/manager.py`
+```python
+# app/modules/realtime/manager.py
+"""Gerenciador de conexões SSE simplificado"""
+import asyncio
+from typing import Dict, Set
+from app.core.core import get_logger
+
+logger = get_logger("realtime")
+
+class RealtimeManager:
+    """Gerencia conexões SSE com cleanup automático"""
+    
+    def __init__(self):
+        self._connections: Dict[int, Set[asyncio.Queue]] = {}
+        self._lock = asyncio.Lock()
+        self._cleanup_task = None
+    
+    async def add(self, user_id: int, queue: asyncio.Queue):
+        """Adiciona uma conexão para um usuário"""
+        async with self._lock:
+            if user_id not in self._connections:
+                self._connections[user_id] = set()
+            self._connections[user_id].add(queue)
+        
+        # Inicia cleanup se necessário
+        if self._cleanup_task is None:
+            self._cleanup_task = asyncio.create_task(self._cleanup_loop())
+        
+        logger.debug(f"Conexão adicionada", {"user_id": user_id})
+    
+    async def broadcast(self, user_id: int, data: dict):
+        """Envia dados para todas as conexões de um usuário"""
+        if user_id not in self._connections:
+            return
+        
+        async with self._lock:
+            dead = set()
+            for queue in self._connections[user_id]:
+                try:
+                    await asyncio.wait_for(queue.put(data), timeout=0.5)
+                except (asyncio.CancelledError, asyncio.TimeoutError):
+                    dead.add(queue)
+                except Exception as e:
+                    logger.error("Erro no broadcast", {"error": str(e)})
+                    dead.add(queue)
+            
+            # Remove conexões mortas
+            for queue in dead:
+                self._connections[user_id].discard(queue)
+            
+            # Remove usuário se não tiver conexões
+            if not self._connections[user_id]:
+                del self._connections[user_id]
+    
+    async def _cleanup_loop(self):
+        """Loop de limpeza periódica"""
+        while True:
+            await asyncio.sleep(60)  # A cada minuto
+            
+            async with self._lock:
+                for user_id in list(self._connections.keys()):
+                    # Remove queues fechadas
+                    self._connections[user_id] = {
+                        q for q in self._connections[user_id]
+                        if not q._closed
+                    }
+                    
+                    if not self._connections[user_id]:
+                        del self._connections[user_id]
+            
+            logger.debug("Cleanup executado", {
+                "conexoes_ativas": sum(len(q) for q in self._connections.values())
+            })
+    
+    def get_active_count(self) -> int:
+        """Retorna número total de conexões ativas"""
+        return sum(len(q) for q in self._connections.values())
+
+# Instância global
+realtime = RealtimeManager()
+```
+
+---
+
+### 14. `app/modules/realtime/routes.py`
+```python
+# app/modules/realtime/routes.py
+"""Rotas de tempo real (SSE)"""
+from fastapi import APIRouter, Request, HTTPException
+from sse_starlette.sse import EventSourceResponse
+import asyncio
+from app.shared.database import db
+from app.shared.security import security
+from app.modules.realtime.manager import realtime
+
+router = APIRouter(prefix="/realtime", tags=["realtime"])
+
+@router.get("/stream")
+async def stream_dados(request: Request):
+    """Stream de dados em tempo real para assinantes"""
+    # 🔥 Valida token
+    auth = request.headers.get("Authorization", "")
+    if not auth.startswith("Bearer "):
+        raise HTTPException(401, "Token necessário")
+    
+    token = auth.split(" ")[1]
+    payload = security.verify_token(token)
+    user_id = int(payload["sub"])
+    
+    # 🔥 Verifica plano
+    if payload["plano"] not in ["pro", "premium"]:
+        raise HTTPException(403, "Plano não permite tempo real")
+    
+    # 🔥 Cria fila para o usuário
+    queue = asyncio.Queue()
+    await realtime.add(user_id, queue)
+    
+    async def event_generator():
+        """Gera eventos SSE"""
+        try:
+            while True:
+                # Verifica desconexão
+                if await request.is_disconnected():
+                    break
+                
+                # Busca dados
+                async with db.connect() as conn:
+                    rows = await conn.fetch_all(
+                        """
+                        SELECT categoria, valor, timestamp 
+                        FROM dados_metricas 
+                        WHERE usuario_id = ? 
+                        ORDER BY timestamp DESC 
+                        LIMIT 10
+                        """,
+                        (user_id,)
+                    )
+                
+                # Envia evento
+                yield {
+                    "event": "dados",
+                    "data": [dict(row) for row in rows]
+                }
+                
+                await asyncio.sleep(2)  # Atualização a cada 2s
+                
+        except asyncio.CancelledError:
+            pass
+        except Exception as e:
+            yield {"event": "error", "data": {"message": "Erro no stream"}}
+    
+    return EventSourceResponse(event_generator())
+
+@router.get("/status")
+async def status():
+    """Retorna status do sistema de tempo real"""
+    return {
+        "conexoes_ativas": realtime.get_active_count(),
+        "status": "online"
+    }
+```
+
+---
+
+### 15. `app/main.py`
+```python
+# app/main.py
+"""Entry point da aplicação"""
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import JSONResponse
+from contextlib import asynccontextmanager
+from app.core.core import get_logger, settings
+from app.shared.middleware import Middleware
+from app.shared.database import db
+from app.modules.auth import router as auth_router
+from app.modules.realtime import router as realtime_router
+
+logger = get_logger("app")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Gerenciador de ciclo de vida"""
+    logger.info("🚀 Iniciando aplicação...")
+    
+    try:
+        await db.init()
+        logger.info("✅ Banco de dados inicializado")
+    except Exception as e:
+        logger.error(f"❌ Erro ao inicializar banco: {e}")
+        raise
+    
+    yield
+    
+    logger.info("🛑 Desligando aplicação...")
+
+# Cria app
+app = FastAPI(
+    title="Meu Site MVP",
+    version="1.0.0",
+    description="Aplicação modular e otimizada",
+    lifespan=lifespan,
+    docs_url="/docs" if settings.DEBUG else None,
+    redoc_url="/redoc" if settings.DEBUG else None
+)
+
+# Middleware
+app.add_middleware(Middleware)
+
+# Rotas
+app.include_router(auth_router)
+app.include_router(realtime_router)
+
+# Healthcheck
+@app.get("/health")
+async def healthcheck():
+    """Endpoint de saúde para monitoramento"""
+    return {
+        "status": "ok",
+        "env": settings.ENV,
+        "version": "1.0.0"
+    }
+
+# Handlers de erro
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request: Request, exc: HTTPException):
+    """Handler para exceções HTTP"""
+    logger.warning(
+        f"HTTP {exc.status_code}",
+        {"path": request.url.path, "detail": exc.detail}
+    )
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"error": exc.detail}
+    )
+
+@app.exception_handler(Exception)
+async def generic_exception_handler(request: Request, exc: Exception):
+    """Handler para exceções genéricas (fallback)"""
+    logger.error(
+        "Exceção não tratada",
+        {"path": request.url.path, "error": str(exc)}
+    )
+    return JSONResponse(
+        status_code=500,
+        content={
+            "error": "Erro interno do servidor",
+            "message": "Tente novamente mais tarde" if not settings.DEBUG else str(exc)
+        }
+    )
+```
+
+---
+
+### 16. `scripts/init_db.py`
+```python
+# scripts/init_db.py
+"""Script para popular banco com dados iniciais"""
+import asyncio
+import random
+from datetime import datetime, timedelta
+from app.shared.database import db
+from app.shared.security import security
+
+async def main():
+    """Popula dados de exemplo"""
+    print("🌱 Inicializando banco de dados...")
+    await db.init()
+    
+    # Cria usuário admin
+    async with db.connect() as conn:
+        admin = await conn.fetch_one(
+            "SELECT id FROM usuarios WHERE email = 'admin@exemplo.com'"
+        )
+        
+        if not admin:
+            hashed = security.hash_password("Admin@123")
+            await conn.execute(
+                """
+                INSERT INTO usuarios (email, senha_hash, nome, plano)
+                VALUES (?, ?, ?, ?)
+                """,
+                ("admin@exemplo.com", hashed, "Administrador", "premium")
+            )
+            
+            admin_id = (await conn.fetch_one(
+                "SELECT id FROM usuarios WHERE email = 'admin@exemplo.com'"
+            ))["id"]
+            
+            print(f"✅ Admin criado: ID {admin_id}")
+    
+    # Cria dados de exemplo para gráficos
+    async with db.connect() as conn:
+        # Verifica se já tem dados
+        count = await conn.fetch_one(
+            "SELECT COUNT(*) as total FROM dados_metricas"
+        )
+        if count["total"] > 0:
+            print("📊 Dados já existem, pulando...")
+            return
+        
+        admin = await conn.fetch_one(
+            "SELECT id FROM usuarios WHERE email = 'admin@exemplo.com'"
+        )
+        
+        if admin:
+            categorias = ["Vendas", "Visitas", "Conversões", "Receita"]
+            for i

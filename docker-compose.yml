@@ -1,0 +1,17 @@
+services:
+  api:
+    build: .
+    container_name: radar-financeiro
+    ports:
+      - "8000:8000"
+    environment:
+      ENV: development
+      DEBUG: "true"
+      JWT_SECRET_KEY: dev-secret-key-change-in-production
+      DATABASE_URL: sqlite:///data/app.db
+      LOG_LEVEL: INFO
+      ALLOWED_ORIGINS: "*"
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    restart: unless-stopped

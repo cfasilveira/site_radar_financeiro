@@ -1,0 +1,28 @@
+app = "radar-financeiro-mvp"
+primary_region = "gru"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  ENV = "production"
+  DEBUG = "false"
+  JWT_SECRET_KEY = ""
+  JWT_EXPIRE_MINUTES = "60"
+  DATABASE_URL = "sqlite:///data/app.db"
+  LOG_LEVEL = "INFO"
+  ALLOWED_ORIGINS = "*"
+
+[http_service]
+  internal_port = 8000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+
+  [[http_service.checks]]
+    interval = "30s"
+    timeout = "5s"
+    grace_period = "10s"
+    method = "GET"
+    path = "/health"
